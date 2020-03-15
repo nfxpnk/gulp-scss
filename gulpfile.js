@@ -53,7 +53,7 @@ function compileScss(src, dest) {
         .pipe(gulp.dest(dest));
 }
 
-function compileScssRefresh() {
+function compileProjectScss() {
     return compileScss(paths.css[0].src, paths.css[0].dest);
 }
 
@@ -96,13 +96,13 @@ function reloadContent() {
 }
 
 // Tasks
-gulp.task('compile:scss', gulp.series(compileScssRefresh));
+gulp.task('compile:scss', gulp.series(compileProjectScss));
 
 gulp.task(
     'default',
     gulp.series(
         gulp.parallel(connectLiveReload, function() {
-            watchStyles(paths.css[0].src, compileScssRefresh);
+            watchStyles(paths.css[0].src, compileProjectScss);
         })
     )
 );
