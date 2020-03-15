@@ -20,19 +20,14 @@ const sourcemapsEnabled = true;
 
 const config = require('@tridnguyen/config');
 
-
 // Lint scss file with `stylelint`
 function sassLinter(file) {
-    return gulp
-        .src(file)
-        .pipe(
-            styleLint({
-                failAfterError: false,
-                reporters: [
-                    {formatter: 'verbose', console: true}
-                ]
-            })
-        );
+    return gulp.src(file).pipe(
+        styleLint({
+            failAfterError: false,
+            reporters: [{ formatter: 'verbose', console: true }]
+        })
+    );
 }
 
 // Compile scss
