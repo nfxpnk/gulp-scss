@@ -12,7 +12,7 @@ const sass = require('gulp-sass');
 const prefix = require('gulp-autoprefixer');
 const sourcemaps = require('gulp-sourcemaps');
 const connect = require('gulp-connect');
-const sassLint = require('gulp-sass-lint');
+const styleLint = require('gulp-stylelint');
 
 const merge = require('merge-stream');
 
@@ -26,13 +26,12 @@ function sassLinter(file) {
     return gulp
         .src(file)
         .pipe(
-            sassLint({
-                options: {
-                    configFile: '.sass-lint.yml'
-                }
+            styleLint({
+                reporters: [
+                    {formatter: 'string', console: true}
+                ]
             })
-        )
-        .pipe(sassLint.format());
+        );
 }
 
 // Compile scss

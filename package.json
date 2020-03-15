@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/nfxpnk/gulp-scss.git"
+    "type": "git",
+    "url": "https://github.com/nfxpnk/gulp-scss.git"
   },
   "devDependencies": {
     "@tridnguyen/config": "^2.3.1",
@@ -23,6 +23,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-stylelint": "^13.0.0",
     "gulp-sourcemaps": "^2.6.5",
-    "merge-stream": "^2.0.0"
+    "merge-stream": "^2.0.0",
+    "stylelint": "^13.2.1"
   }
 }
