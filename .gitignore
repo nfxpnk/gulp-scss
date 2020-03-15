@@ -1,3 +1,5 @@
 test-code/css/*.css
 test-code/css/*.map
+config.json
+.stylelintrc.yaml
 node_modules
