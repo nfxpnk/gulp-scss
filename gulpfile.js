@@ -84,7 +84,7 @@ function watchStyles(src, func) {
 function reloadContent() {
     log('Reloading CSS...');
     return gulp
-    .src(config['scss-source'])
+    .src(config['css-destination'] + '/*.css')
     .pipe(connect.reload());
 }
 

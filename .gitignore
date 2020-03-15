@@ -3,3 +3,4 @@ test-code/css/*.map
 config.json
 .stylelintrc.yaml
 node_modules
+package-lock.json
