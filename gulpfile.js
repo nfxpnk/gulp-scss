@@ -14,11 +14,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const connect = require('gulp-connect');
 const styleLint = require('gulp-stylelint');
 
-const merge = require('merge-stream');
-
 const sourcemapsEnabled = true;
-
-const config = require('@tridnguyen/config');
 
 // Lint scss file with `stylelint`
 function sassLinter(file) {
@@ -88,11 +84,9 @@ function watchStyles(src, func) {
 
 function reloadContent() {
     log('Reloading CSS...');
-    var streams = merge();
-    [paths.css[0].dest].forEach(function(path) {
-        streams.add(gulp.src(path + '/*.css').pipe(connect.reload()));
-    });
-    return streams;
+    return gulp
+    .src(paths.css[0].src)
+    .pipe(connect.reload());
 }
 
 // Tasks
