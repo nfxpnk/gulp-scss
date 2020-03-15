@@ -4,8 +4,7 @@ const gulp = require('gulp');
 const log = require('fancy-log');
 const c = require('ansi-colors');
 
-const pkg = require('./config.json');
-const paths = pkg.paths;
+const config = require('./config.json');
 
 const gif = require('gulp-if');
 const sass = require('gulp-sass');
@@ -36,7 +35,7 @@ function compileScss(src, dest) {
         .pipe(
             sass({
                 outputStyle: 'expanded',
-                includePaths: paths.core['sass-includePaths']
+                includePaths: config['scss-include']
             }).on('error', sass.logError)
         )
         .pipe(
@@ -50,7 +49,7 @@ function compileScss(src, dest) {
 }
 
 function compileProjectScss() {
-    return compileScss(paths.css[0].src, paths.css[0].dest);
+    return compileScss(config['scss-source'], config['css-destination']);
 }
 
 const cors = (req, res, next) => {
@@ -60,7 +59,7 @@ const cors = (req, res, next) => {
 
 function connectLiveReload() {
     return connect.server({
-        root: paths.css[0].root,
+        root: config['root'],
         https: true,
         port: 8081,
         host: '0.0.0.0',
@@ -85,7 +84,7 @@ function watchStyles(src, func) {
 function reloadContent() {
     log('Reloading CSS...');
     return gulp
-    .src(paths.css[0].src)
+    .src(config['scss-source'])
     .pipe(connect.reload());
 }
 
@@ -96,7 +95,7 @@ gulp.task(
     'default',
     gulp.series(
         gulp.parallel(connectLiveReload, function() {
-            watchStyles(paths.css[0].src, compileProjectScss);
+            watchStyles(config['scss-source'], compileProjectScss);
         })
     )
 );

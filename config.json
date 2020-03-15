@@ -1,15 +1,6 @@
 {
-    "paths": {
-        "core": {
-            "sass-includePaths": [
-                ""
-            ]
-        },
-        "css": [{
-                "src":  "test-code/scss",
-                "dest": "test-code/css",
-                "root": "test-code"
-            }
-        ]
-    }
+    "scss-include": "",
+    "scss-source": "test-code/scss",
+    "css-destination": "test-code/css",
+    "root": "test-code"
 }
