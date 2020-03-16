@@ -17,6 +17,8 @@ const sourcemapsEnabled = true;
 
 // Lint scss file with `stylelint`
 function sassLinter(file) {
+    log('Verifying ' + c.yellow(file));
+
     return gulp.src(file).pipe(
         styleLint({
             failAfterError: false,
@@ -27,7 +29,7 @@ function sassLinter(file) {
 
 // Compile scss
 function compileScss(src, dest) {
-    log('Compiling ' + c.yellow(src + '/*.scss') + ' into ' + c.green(dest));
+    log('Compiling ' + c.yellow(src + '/*.scss') + ' into ' + c.green(dest + '/*.css'));
 
     return gulp
         .src(src + '/*.scss')
@@ -75,6 +77,7 @@ function connectLiveReload() {
 
 function watchStyles(src, func) {
     log('Watching ' + c.cyan(src + '/**/*.scss'));
+
     gulp.watch(src + '/**/*.scss', gulp.series(func, reloadContent)).on('change', function(changedFile) {
         log('File ' + c.yellow(changedFile) + ' was modified');
         sassLinter(changedFile);
@@ -83,9 +86,8 @@ function watchStyles(src, func) {
 
 function reloadContent() {
     log('Reloading CSS...');
-    return gulp
-    .src(config['css-destination'] + '/*.css')
-    .pipe(connect.reload());
+
+    return gulp.src(config['css-destination'] + '/*.css').pipe(connect.reload());
 }
 
 // Tasks
